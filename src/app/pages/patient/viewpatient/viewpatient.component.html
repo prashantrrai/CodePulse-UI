@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="flex">
+        <h2>Patients View</h2>
+        <a class="btn btn-primary" (click)="bookAppointment()">Book Appointment</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>IsActive</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (PatientData$ | async; as PatientArray)
+                {
+                @for (patient of PatientArray; track $index)
+                {
+                <tr>
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.age}}</td>
+                    <td>{{patient.email}}</td>
+                    <td>{{patient.phone}}</td>
+                    <td>{{patient.address}}</td>
+                    <td>{{patient.isActive === true ? "Yes": "No"}}</td>
+                    <td class="icon-buttons">
+                        <button class="icon-button"><i class="fa fa-trash"></i></button>
+                        <button class="icon-button"><i class="fa fa-pen-to-square"></i></button>
+                    </td>
+                </tr>
+                }
+                }
+                <!-- More rows here -->
+            </tbody>
+        </table>
+    </div>
+</div>
